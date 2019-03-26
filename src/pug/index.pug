@@ -1,0 +1,33 @@
+doctype html
+html(lang="zh-tw")
+    head
+        meta(charset="UTF-8")
+        title 服務條款
+        link(rel="stylesheet" type="text/css" href=`./${version}/css/index.css`)
+        include ./head.pug
+    body.basic
+        include ./html-head.pug
+        #container
+            .box
+                .box-title
+                    .tag.blue
+                        p Q & A
+                    .content 使用幫手
+                ul.qa-list
+                .qa
+                    p.question
+                    p.answer
+        include ./html-footer.pug
+        script#qaTemplate(type='text/x-jquery-template').
+            <li class="category">
+            <div class="title">{{= title}}</div>
+            {{if youtube}}
+            <iframe width="270" height="180" src="//www.youtube.com/embed/{{= youtube}}" frameborder="0" allowfullscreen></iframe>
+            {{/if}}
+            <ul>
+            {{each list}}
+            <li data-qa-idx="{{= qaIdx}}" data-list-idx="{{= $index}}">{{= question}}</li>
+            {{/each}}
+            </ul>
+            </li>
+        script(type='text/javascript', src=`./${version}/js/index.js`)
