@@ -2,7 +2,7 @@
   "name": "info-qa",
   "description": "info-qa",
   "author": "hotdog929 <hotdog929@gmail.com>",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "defaultBranch": "test",
   "branch": {
     "test": {
