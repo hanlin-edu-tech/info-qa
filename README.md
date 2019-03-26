@@ -9,3 +9,11 @@ gulp build
 ```
 gulp package
 ```
+
+產 travis 用的 gcs.json.enc
+```
+$ docker run -v [gcs.json dir path]:/tmp  -it ruby:2.6 /bin/bash
+# cd /tmp
+# gem install travis
+# travis encrypt-file -t [travis user token] -r hanlin-edu-tech/info-qa gcs.json
+```
