@@ -222,6 +222,7 @@ gulp.task('package', ['lib', 'otherLib'], function(branch){
     .then(function(){return Q.all([
         util.logStream(copyImgTask(`${distPath}/${version}/img`)),
         util.logStream(libTask(`${distPath}/${version}/lib`)),
+        util.logStream(otherLibTask(`${distPath}/${version}/lib`)),
         util.logStream(htmlTask(distPath)),
         util.logStream(scriptTask(`${distPath}/${version}/js`)),
         util.logStream(styleTask(`${distPath}/${version}/css`))])});
