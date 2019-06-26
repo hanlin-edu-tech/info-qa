@@ -4,108 +4,20 @@ html(lang="zh-tw")
         meta(charset="UTF-8")
         title 服務條款
         link(rel="stylesheet" type="text/css" href=`./${version}/css/index.css`)
-        link(rel="stylesheet" type="text/css" href=`./${version}/css/contact.css`)
         include ./head.pug
     body.basic
         include ./html-head.pug
-        .container
-            .box
-                .support
-                    img.icon(src=`./${version}/img/ContactUs-phone.png`)
-                    table
-                        tbody
-                            tr
-                                td
-                                    span.free-tel 免費服務專線
-                                td 0800-008-811
-                            tr
-                                td 服務專線代表號
-                                td (02)8228-2575
-                            tr
-                                td 服務時間
-                                td
-                                    | 星期一至五 9:00~21:00
-                                    br
-                                    | 星期六/日：休假
-                                    br
-                                    | 國定假日休假
-                .support
-                    img.icon(src=`./${version}/img/ContactUs-onlineservice.png`)
-                    table
-                        tbody
-                            tr
-                                td 官方Line@
-                                td
-                                    a.line(href='//line.me/R/ti/p/MtsRQz_Hn5', target='_blank') @ehanlin
-                            tr
-                                td 服務時間
-                                td
-                                    | 星期一至五 9:00~21:00
-                                    br
-                                    | 星期六/日：休假
-                                    br
-                                    |  國定假日休假
-            .box
-                .box-title
-                    .tag.green
-                        p Contact Us
-                    .content 請留下您的聯絡方式
-                form#contact
-                    table
-                        tr
-                            td(colspan="2")
-                                img.icon(src=`./${version}/img/ContactUs-email.png`)
-                                p.mail-address 客服信箱：support@ehanlin.com.tw
-                                p 
-                                    | 若有任何疑問或建議，請您不吝指教。
-                                    br
-                                    | 留下您的聯繫資訊，翰林雲端學院將會儘速在3個工作天內為您處理，謝謝您！                    
-                        tr
-                            td *訪客姓名 :
-                            td
-                                input(type="text" name="name" id="user_name" maxlength="30" required)
-                                input(type="radio" name="gender" value="小姐") 
-                                |  小姐              
-                                input(type="radio" name="gender" value="先生")
-                                |  先生              
-                        tr
-                            td *身份 :
-                            td
-                                select#character(name="character" title="請選擇" required)
-                                    option(value="") 請選擇
-                                    option(value="家長") 家長
-                                    option(value="老師") 老師
-                                    option(value="學生") 學生
-                                    option(value="訪客") 訪客        
-                        tr
-                            td *聯絡電話 :
-                            td
-                                input(type="text" id="tel" name="tel" maxlength="30" required)
-                        tr
-                            td *E-mail聯絡信箱 :
-                            td 
-                                input(type="text" id="email" name="email" maxlength="50" value="" required)
-                        tr
-                            td *內容 :
-                            td
-                                textarea(name="content" id="content" required)
-                        tr  
-                            td
-                            td
-                                a.btn#doneButton(title="寄出") 寄出
         #container
             .box
                 .box-title
                     .tag.blue
                         p Q & A
                     .content 常見問題
-                ul.qa-list  
+                ul.qa-list
                 .qa
                     p.question
                     p.answer
         include ./html-footer.pug
-        script(type='text/javascript', src=`./${version}/lib/jquery-3.4.0.min.js`)
-        script(type='text/javascript', src=`./${version}/lib/jquery.tmpl.js`)
         script#qaTemplate(type='text/x-jquery-template').
             <li class="category">
             <div class="title">{{= title}}</div>
@@ -119,40 +31,3 @@ html(lang="zh-tw")
             </ul>
             </li>
         script(type='text/javascript', src=`./${version}/js/index.js`)
-        script(type='text/javascript').
-            $(function() {
-            var isEmptyByRequired = function() {
-            var result = false;
-            $("form [required]").each(function() {
-            if ($(this).val() == "") {
-            result = true;
-            return false;
-            }
-            });
-            return result;
-            };
-            $('#doneButton').click(function() {
-            if (!isEmptyByRequired() && $("form input[type='radio']:checked").length > 0) {
-            loading();
-            $.ajax({
-            url: "/system/contact",
-            type: "post",
-            data: new FormData($('form')[0]),
-            contentType: false,
-            processData: false
-            })
-            .done(function(data) {
-            if (data.success) {
-            message('發送成功');
-            $("input[name][type='text'],textarea").val('');
-            } else {
-            message('發送失敗');
-            }
-            })
-            .always($.proxy($.unblockUI, $));
-            } else {
-            alert('欄位不得空白');
-            }
-            });
-            });
-
