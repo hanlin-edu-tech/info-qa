@@ -43,5 +43,8 @@
   },
   "scripts": {
     "test": "gulp package --branch $TRAVIS_BRANCH"
+  },
+  "overrides": {
+    "graceful-fs": "^4.2.11"
   }
 }
